@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('run tests') {
+            steps{
+                build job: 'mpipeline/jenkins',
+                wait: true,
+                parameters: [
+                    string(name: 'server', value: "server1"),
+                    string(name: 'rest', value: "true"),
+                    string(name: 'web', value: "false")
+                ]
+            }
+        }
+    }
+}
